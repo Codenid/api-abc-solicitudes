@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import List, Optional, Literal
 
 import os
+from dotenv import load_dotenv
 from pydantic import BaseModel, Field, ValidationError
 from fastapi import FastAPI, Depends, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,11 +16,10 @@ from sqlalchemy.orm import declarative_base, relationship, Session, sessionmaker
 # -----------------------------------------------------------------------------
 # Configuración
 # -----------------------------------------------------------------------------
-DB_URL = os.getenv(
-    "DATABASE_URL",
-    # ejemplo: "postgresql+psycopg2://user:pass@localhost:5432/reclamos_abc"
-    "postgresql+psycopg2://appuser:apppass@localhost:5432/reclamos_abc"
-)
+
+load_dotenv()
+
+DB_URL = os.getenv("DATABASE_URL","")
 
 engine = create_engine(DB_URL, future=True, pool_pre_ping=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, future=True)
