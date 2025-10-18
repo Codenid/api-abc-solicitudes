@@ -1,0 +1,27 @@
+# Carpetas y archivos que no deben ir al contexto de build
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# Archivos de entorno y secretos
+.env
+*.pem
+*.key
+
+# Logs y temporales
+*.log
+*.tmp
+
+# IDEs y herramientas locales
+.vscode/
+.idea/
+*.swp
+
+# Git y documentación local
+.git/
+.gitignore
+README.md
+tests/
+docs/

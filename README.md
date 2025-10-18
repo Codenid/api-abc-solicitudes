@@ -9,7 +9,7 @@ Paso A:
 	1. Crear proyecto poetry
 		poetry new api-abc-solicitudes
 
-Paso A:
+Paso B:
 
 	1. Descargar versión de python
 		pyenv install 3.10.14
@@ -21,14 +21,26 @@ Paso B:
 	1. Especificando dependencias
         poetry add fastapi psycopg2-binary pydantic python-dotenv sqlalchemy uvicorn
 
-Paso C:
+Paso D:
 
 	1. Creación del entorno
 		poetry env use python
 	2. Instalar dependencias
 		poetry install --no-root
 
-Paso D:
+Paso E:
 
     1. Ejecutar api
         poetry run uvicorn src.api_abc_solicitudes.main:app --reload --port 8101
+
+Paso F:
+
+	1. Generar requirements.txt fuera del contenedor
+		poetry export -f requirements.txt --without-hashes > requirements.txt
+
+Paso G:
+
+	1. Crear imagen
+		docker build -t prj-api-abc-solicitudes_i .
+	2. Ejecutar contenedor
+		docker run -d --name prj-api-abc-solicitudes_c -p 8101:8101 --env-file .env prj-api-abc-solicitudes_i
