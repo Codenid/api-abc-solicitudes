@@ -1,0 +1,81 @@
+{
+  "info": {
+    "_postman_id": "e1d3eafa-1234-4567-89ab-abcdef987654",
+    "name": "API Reclamos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "reclamos-api"
+  },
+  "item": [
+    {
+      "name": "01 - Listar reclamos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8101/reclamos?page=1&page_size=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8101",
+          "path": ["reclamos"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "page_size", "value": "10" }
+          ]
+        },
+        "description": "Consulta básica de reclamos, con paginación y filtros opcionales."
+      },
+      "response": []
+    },
+    {
+      "name": "02 - Obtener reclamo por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8101/reclamos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8101",
+          "path": ["reclamos", "1"]
+        },
+        "description": "Obtiene el detalle completo de un reclamo (catálogos, movimientos, decisión)."
+      },
+      "response": []
+    },
+    {
+      "name": "03 - Crear reclamo",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id_cliente\": 1001,\n  \"id_tarjeta\": 5001,\n  \"id_tipo_reclamo\": 1,\n  \"id_estado_actual\": 1,\n  \"id_canal_ingreso\": 2,\n  \"descripcion\": \"Consumo no reconocido en comercio online\",\n  \"monto\": 150.75,\n  \"id_moneda\": 1,\n  \"referencia_externa\": \"CASE-ABC-2025-0001\",\n  \"movimientos\": [\n    { \"id_movimiento\": 555001, \"rol\": \"DISPUTA\" },\n    { \"id_movimiento\": 555002 }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8101/reclamos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8101",
+          "path": ["reclamos"]
+        },
+        "description": "Crea un nuevo reclamo con los datos básicos y movimientos asociados."
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": { "type": "text/javascript", "exec": [] }
+    },
+    {
+      "listen": "test",
+      "script": { "type": "text/javascript", "exec": [] }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8101" }
+  ]
+}
