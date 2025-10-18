@@ -44,3 +44,40 @@ Paso G:
 		docker build -t prj-api-abc-solicitudes_i .
 	2. Ejecutar contenedor
 		docker run -d --name prj-api-abc-solicitudes_c -p 8101:8101 --env-file .env prj-api-abc-solicitudes_i
+
+## Nuevo Esquema:
+
+reclamos-api/
+└─ app/
+   ├─ __init__.py
+   ├─ main.py
+   ├─ db.py
+   ├─ models.py
+   ├─ schemas.py
+   └─ routers/
+      ├─ __init__.py
+      └─ reclamos.py
+.env.example
+
+## Usar Makefile
+
+### Construir imagen
+make build
+
+### Levantar contenedor
+make run
+
+### Ver logs en tiempo real
+make logs
+
+### Detener contenedor
+make stop
+
+### Reconstruir desde cero y ejecutar
+make rebuild
+
+### Entrar a la shell del contenedor
+make bash
+
+### Borrar todo (contenedor + imagen)
+make clean
